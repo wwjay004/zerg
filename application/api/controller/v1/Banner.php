@@ -12,6 +12,7 @@ use app\api\validate\IDMustBePositiveInt;
 
 use app\api\model\Banner as BannerModel;
 use think\Exception;
+use think\response\Json;
 
 class Banner
 {
@@ -21,6 +22,7 @@ class Banner
      * @http GET
      * @param $id banner的id号
      *
+     * @return string|Json
      * @throws Exception
      */
     public function getBanner($id){
@@ -32,7 +34,7 @@ class Banner
                 'error_code' => 10001,
                 'msg' => $ex->getMessage()
             ];
-            return json($err,);
+            return json($err,'400');
         }
 
         return $banner;
